@@ -1,4 +1,16 @@
 ﻿@page
 @model OnlineShop.Pages.ProductsModel
-@{
-}
+
+<h2>Online Shop</h2>
+
+<div style="display: flex; gap: 20px; flex-wrap: wrap;">
+    @foreach (var product in Model.Products)
+    {
+        <div style="border: 1px solid #ccc; padding: 10px; width: 200px;">
+            <h4>@product.Name</h4>
+            <p>@product.Description</p>
+            <p><strong>R @product.Price</strong></p>
+            <button>Add to Cart</button>
+        </div>
+    }
+</div>
