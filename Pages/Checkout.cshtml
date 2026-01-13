@@ -1,4 +1,24 @@
 ﻿@page
 @model OnlineShop.Pages.CheckoutModel
-@{
+
+<h2>Checkout</h2>
+
+<form method="post">
+    <div>
+        <label>Name</label><br />
+        <input asp-for="CustomerName" />
+    </div>
+
+    <div>
+        <label>Card Number</label><br />
+        <input asp-for="CardNumber" />
+    </div>
+
+    <br />
+    <button type="submit">Pay Now</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <p style="color: green;">@Model.Message</p>
 }
