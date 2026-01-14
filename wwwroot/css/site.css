@@ -20,3 +20,22 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Gadgets Store Header Background */
+.gadget-header {
+    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url("https://images.unsplash.com/photo-1518770660439-4636190af475");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+    /* Navbar text styling */
+    .gadget-header .navbar-brand,
+    .gadget-header .nav-link {
+        color: #ffffff !important;
+        font-weight: 500;
+    }
+
+        .gadget-header .nav-link:hover {
+            color: #00e5ff !important;
+        }

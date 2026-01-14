@@ -6,9 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<ShopContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("ShopConnection")
-    ));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddSession();
 

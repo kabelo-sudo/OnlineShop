@@ -1,10 +1,48 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Gadget Store";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    body {
+        background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url("https://images.unsplash.com/photo-1518770660439-4636190af475");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .home-container {
+        color: white;
+        text-align: center;
+        padding-top: 150px;
+    }
+
+        .home-container h1 {
+            font-size: 4rem;
+            font-weight: bold;
+        }
+
+        .home-container p {
+            font-size: 1.3rem;
+            margin-top: 20px;
+        }
+
+    .btn-shop {
+        margin-top: 30px;
+        padding: 12px 30px;
+        font-size: 1.1rem;
+        border-radius: 30px;
+    }
+</style>
+
+<div class="home-container">
+    <h1>Welcome to Gadget World 🔌📱</h1>
+    <p>Your one-stop shop for the latest tech gadgets and accessories</p>
+
+    <a asp-page="/Products/Index" class="btn btn-primary btn-shop">
+        Shop Gadgets
+    </a>
 </div>
