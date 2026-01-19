@@ -30,19 +30,29 @@
             margin-top: 20px;
         }
 
-    .btn-shop {
-        margin-top: 30px;
-        padding: 12px 30px;
-        font-size: 1.1rem;
-        border-radius: 30px;
+    .shop-btn {
+        display: inline-block;
+        background-color: #0d6efd;
+        color: white;
+        padding: 12px 28px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 600;
+        transition: background-color 0.3s ease, transform 0.2s ease;
     }
+
+        .shop-btn:hover {
+            background-color: #084298;
+            transform: translateY(-2px);
+        }
+
 </style>
 
 <div class="home-container">
     <h1>Welcome To Luxury World 🔌📱</h1>
     <p>Your one-stop shop for the latest tech gadgets and accessories</p>
 
-    <a asp-page="/Products/Index" class="btn btn-primary btn-shop">
-        Shop Gadgets
-    </a>
+    <a asp-page="/Products" class="shop-btn">Shop Gadgets</a>
+
 </div>
