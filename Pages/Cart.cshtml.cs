@@ -29,6 +29,9 @@ namespace OnlineShop.Pages
 
             TotalQuantity = CartItems.Sum(c => c.Quantity);
             GrandTotal = CartItems.Sum(c => c.Product.Price * c.Quantity);
+
+            // ? THIS CONNECTS TO THE NAVBAR BADGE
+            ViewData["CartCount"] = TotalQuantity;
         }
     }
 }
