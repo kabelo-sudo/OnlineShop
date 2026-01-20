@@ -42,6 +42,9 @@ namespace OnlineShop.Pages
             }
 
             _context.SaveChanges();
+
+            ViewData["CartCount"] = _context.CartItems.Sum(c => c.Quantity);
+
             return RedirectToPage();
         }
     }

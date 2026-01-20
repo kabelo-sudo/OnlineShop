@@ -91,7 +91,11 @@
                 <p>@product.Description</p>
                 <p><strong>R @product.Price</strong></p>
 
-                <button>Add to Cart</button>
+                <form method="post" asp-page-handler="AddToCart">
+                    <input type="hidden" name="productId" value="@product.Id" />
+                    <button type="submit">Add to Cart</button>
+                </form>
+
             </div>
         }
     </div>
