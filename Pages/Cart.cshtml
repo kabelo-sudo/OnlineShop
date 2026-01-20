@@ -1,35 +1,36 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using OnlineShop.Data;
-using OnlineShop.Models;
-using System.Collections.Generic;
-using System.Linq;
+﻿@page
+@model OnlineShop.Pages.CartModel
 
-namespace OnlineShop.Pages
-{
-    public class CartModel : PageModel
-    {
-        private readonly ShopContext _context;
+<h2>Your Cart</h2>
 
-        public List<CartItem>
-    CartItems { get; set; } = new();
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CartItems)
+        {
+            <tr>
+                <td>@item.Product.Name</td>
+                <td>R @item.Product.Price</td>
+                <td>@item.Quantity</td>
+                <td>R @(item.Product.Price* item.Quantity)</td>
+            </tr>
+        }
+    </tbody>
+</table>
 
-    public int TotalQuantity { get; set; }
-    public decimal GrandTotal { get; set; }
+<hr />
 
-    public CartModel(ShopContext context)
-    {
-    _context = context;
-    }
+<h4>
+    🧾 Total Items: <strong>@Model.TotalQuantity</strong>
+</h4>
 
-    public void OnGet()
-    {
-    CartItems = _context.CartItems
-    .Include(c => c.Product)
-    .ToList();
-
-    TotalQuantity = CartItems.Sum(c => c.Quantity);
-    GrandTotal = CartItems.Sum(c => c.Product.Price * c.Quantity);
-    }
-    }
-    }
+<h3>
+    💰 Grand Total: <strong>R @Model.GrandTotal</strong>
+</h3>

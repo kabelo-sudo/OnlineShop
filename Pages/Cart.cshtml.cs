@@ -11,7 +11,10 @@ namespace OnlineShop.Pages
     {
         private readonly ShopContext _context;
 
-        public List<CartItem> CartItems { get; set; }
+        public List<CartItem> CartItems { get; set; } = new();
+
+        public int TotalQuantity { get; set; }
+        public decimal GrandTotal { get; set; }
 
         public CartModel(ShopContext context)
         {
@@ -23,6 +26,9 @@ namespace OnlineShop.Pages
             CartItems = _context.CartItems
                 .Include(c => c.Product)
                 .ToList();
+
+            TotalQuantity = CartItems.Sum(c => c.Quantity);
+            GrandTotal = CartItems.Sum(c => c.Product.Price * c.Quantity);
         }
     }
 }
