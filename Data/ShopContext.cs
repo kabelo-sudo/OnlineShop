@@ -9,5 +9,7 @@ namespace OnlineShop.Data
             : base(options) { }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
+
     }
 }

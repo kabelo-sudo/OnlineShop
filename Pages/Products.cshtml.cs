@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using OnlineShop.Data;
 using OnlineShop.Models;
@@ -10,18 +11,38 @@ namespace OnlineShop.Pages
     {
         private readonly ShopContext _context;
 
-        public List<Product> Products { get; set; } = new();
+        public List<Product> Products { get; set; }
 
-        // Constructor: gets database connection
         public ProductsModel(ShopContext context)
         {
             _context = context;
         }
 
-        // Runs when page loads
         public void OnGet()
         {
             Products = _context.Products.ToList();
+        }
+
+        public IActionResult OnPostAddToCart(int productId)
+        {
+            var cartItem = _context.CartItems
+                .FirstOrDefault(c => c.ProductId == productId);
+
+            if (cartItem != null)
+            {
+                cartItem.Quantity++;
+            }
+            else
+            {
+                _context.CartItems.Add(new CartItem
+                {
+                    ProductId = productId,
+                    Quantity = 1
+                });
+            }
+
+            _context.SaveChanges();
+            return RedirectToPage();
         }
     }
 }
