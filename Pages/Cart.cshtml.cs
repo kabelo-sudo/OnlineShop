@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using OnlineShop.Data;
@@ -12,7 +13,6 @@ namespace OnlineShop.Pages
         private readonly ShopContext _context;
 
         public List<CartItem> CartItems { get; set; } = new();
-
         public int TotalQuantity { get; set; }
         public decimal GrandTotal { get; set; }
 
@@ -30,8 +30,21 @@ namespace OnlineShop.Pages
             TotalQuantity = CartItems.Sum(c => c.Quantity);
             GrandTotal = CartItems.Sum(c => c.Product.Price * c.Quantity);
 
-            // ? THIS CONNECTS TO THE NAVBAR BADGE
             ViewData["CartCount"] = TotalQuantity;
+        }
+
+        // ? REMOVE ITEM FROM CART
+        public IActionResult OnPostRemove(int id)
+        {
+            var item = _context.CartItems.FirstOrDefault(c => c.Id == id);
+
+            if (item != null)
+            {
+                _context.CartItems.Remove(item);
+                _context.SaveChanges();
+            }
+
+            return RedirectToPage();
         }
     }
 }
