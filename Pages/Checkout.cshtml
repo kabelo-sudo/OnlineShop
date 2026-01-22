@@ -3,22 +3,51 @@
 
 <h2>Checkout</h2>
 
+<h4>🛒 Order Summary</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CartItems)
+        {
+            <tr>
+                <td>@item.Product.Name</td>
+                <td>@item.Quantity</td>
+                <td>R @(item.Product.Price* item.Quantity)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4>💰 Grand Total: <strong>R @Model.GrandTotal</strong></h4>
+
+<hr />
+
+<h4>📦 Customer Details</h4>
+
 <form method="post">
-    <div>
-        <label>Name</label><br />
-        <input asp-for="CustomerName" />
+    <div class="mb-2">
+        <label>Full Name</label>
+        <input class="form-control" asp-for="CustomerName" required />
     </div>
 
-    <div>
-        <label>Card Number</label><br />
-        <input asp-for="CardNumber" />
+    <div class="mb-2">
+        <label>Email</label>
+        <input class="form-control" asp-for="Email" type="email" required />
     </div>
 
-    <br />
-    <button type="submit">Pay Now</button>
+    <div class="mb-2">
+        <label>Address</label>
+        <textarea class="form-control" asp-for="Address" required></textarea>
+    </div>
+
+    <button class="btn btn-success mt-3">
+        Place Order
+    </button>
 </form>
-
-@if (!string.IsNullOrEmpty(Model.Message))
-{
-    <p style="color: green;">@Model.Message</p>
-}
