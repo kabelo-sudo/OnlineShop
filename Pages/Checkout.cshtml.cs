@@ -24,14 +24,26 @@ namespace OnlineShop.Pages
         [BindProperty]
         public string Address { get; set; }
 
+        // To show message if cart is empty
+        public string Message { get; set; }
+
         public CheckoutModel(ShopContext context)
         {
             _context = context;
         }
 
-        public void OnGet()
+        // ?? Block checkout if cart is empty
+        public IActionResult OnGet()
         {
             LoadCart();
+
+            if (!CartItems.Any())
+            {
+                Message = "Your cart is empty. Add products before checkout.";
+                return Page(); // Stay on page, show message
+            }
+
+            return Page();
         }
 
         public IActionResult OnPost()
@@ -39,9 +51,12 @@ namespace OnlineShop.Pages
             LoadCart();
 
             if (!CartItems.Any())
-                return RedirectToPage("/Cart");
+            {
+                Message = "Cannot place order. Your cart is empty!";
+                return Page(); // Prevent order if no items
+            }
 
-            // ? CLEAR CART (simulate order placed)
+            // ? Process order: clear cart
             _context.CartItems.RemoveRange(CartItems);
             _context.SaveChanges();
 

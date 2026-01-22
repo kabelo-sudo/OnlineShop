@@ -3,51 +3,67 @@
 
 <h2>Checkout</h2>
 
-<h4>🛒 Order Summary</h4>
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <div class="alert alert-warning">
+        @Model.Message
+    </div>
+}
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Product</th>
-            <th>Qty</th>
-            <th>Total</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.CartItems)
-        {
+@if (Model.CartItems.Any())
+{
+    <h4>🛒 Order Summary</h4>
+
+    <table class="table">
+        <thead>
             <tr>
-                <td>@item.Product.Name</td>
-                <td>@item.Quantity</td>
-                <td>R @(item.Product.Price* item.Quantity)</td>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Total</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CartItems)
+            {
+                <tr>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Quantity</td>
+                    <td>R @(item.Product.Price* item.Quantity)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<h4>💰 Grand Total: <strong>R @Model.GrandTotal</strong></h4>
+    <h4>💰 Grand Total: <strong>R @Model.GrandTotal</strong></h4>
 
-<hr />
+    <hr />
 
-<h4>📦 Customer Details</h4>
+    <h4>📦 Customer Details</h4>
 
-<form method="post">
-    <div class="mb-2">
-        <label>Full Name</label>
-        <input class="form-control" asp-for="CustomerName" required />
-    </div>
+    <form method="post">
+        <div class="mb-2">
+            <label>Full Name</label>
+            <input class="form-control" asp-for="CustomerName" required />
+        </div>
 
-    <div class="mb-2">
-        <label>Email</label>
-        <input class="form-control" asp-for="Email" type="email" required />
-    </div>
+        <div class="mb-2">
+            <label>Email</label>
+            <input class="form-control" asp-for="Email" type="email" required />
+        </div>
 
-    <div class="mb-2">
-        <label>Address</label>
-        <textarea class="form-control" asp-for="Address" required></textarea>
-    </div>
+        <div class="mb-2">
+            <label>Address</label>
+            <textarea class="form-control" asp-for="Address" required></textarea>
+        </div>
 
-    <button class="btn btn-success mt-3">
-        Place Order
-    </button>
-</form>
+        <button class="btn btn-success mt-3">
+            Place Order
+        </button>
+    </form>
+}
+else
+{
+    <a asp-page="/Cart" class="btn btn-primary mt-3">
+        Back to Cart
+    </a>
+}
