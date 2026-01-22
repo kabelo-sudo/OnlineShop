@@ -10,6 +10,7 @@
             <th>Price</th>
             <th>Qty</th>
             <th>Total</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -20,6 +21,14 @@
                 <td>R @item.Product.Price</td>
                 <td>@item.Quantity</td>
                 <td>R @(item.Product.Price* item.Quantity)</td>
+                <td>
+                    <form method="post" asp-page-handler="Remove">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <button class="btn btn-danger btn-sm">
+                            Remove
+                        </button>
+                    </form>
+                </td>
             </tr>
         }
     </tbody>
@@ -27,10 +36,5 @@
 
 <hr />
 
-<h4>
-    🧾 Total Items: <strong>@Model.TotalQuantity</strong>
-</h4>
-
-<h3>
-    💰 Grand Total: <strong>R @Model.GrandTotal</strong>
-</h3>
+<h4>🧾 Total Items: <strong>@Model.TotalQuantity</strong></h4>
+<h3>💰 Grand Total: <strong>R @Model.GrandTotal</strong></h3>
