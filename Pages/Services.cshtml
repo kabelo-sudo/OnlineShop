@@ -1,0 +1,135 @@
+﻿@page
+@model ServicesModel
+@{
+    ViewData["Title"] = "Our Services";
+}
+
+<style>
+    /* Luxury background */
+    body {
+        background: linear-gradient(135deg, #0b1c2d, #111827, #1f2933);
+        background-attachment: fixed;
+        font-family: 'Segoe UI', sans-serif;
+        color: #f9fafb;
+    }
+
+    .services-container {
+        max-width: 1100px;
+        margin: 60px auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+    }
+
+    .subtitle {
+        color: #d1d5db;
+        margin-bottom: 50px;
+        font-size: 1.1rem;
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+    }
+
+    .service-card {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px);
+        border-radius: 18px;
+        padding: 30px 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.6);
+        }
+
+    .service-icon {
+        font-size: 40px;
+        margin-bottom: 15px;
+    }
+
+    .service-card h3 {
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+    }
+
+    .service-card p {
+        color: #e5e7eb;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+</style>
+
+<div class="services-container">
+    <h1>@ViewData["Title"]</h1>
+    <p class="subtitle">
+        Premium services designed to match the quality of our luxury gadgets
+    </p>
+
+    <div class="services-grid">
+
+        <div class="service-card">
+            <div class="service-icon">💎</div>
+            <h3>Exclusive Gadgets</h3>
+            <p>
+                We offer high-end, premium gadgets from world-class brands,
+                carefully selected for performance and design.
+            </p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">🚚</div>
+            <h3>Fast & Secure Delivery</h3>
+            <p>
+                Reliable and insured delivery ensures your luxury gadgets
+                arrive safely and on time.
+            </p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">🛡️</div>
+            <h3>Warranty & Protection</h3>
+            <p>
+                Enjoy extended warranties and protection plans for complete
+                peace of mind.
+            </p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">🎧</div>
+            <h3>24/7 Premium Support</h3>
+            <p>
+                Our expert support team is available around the clock to assist
+                with setup, troubleshooting, and advice.
+            </p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">🔒</div>
+            <h3>Secure Payments</h3>
+            <p>
+                Advanced encryption and trusted payment gateways keep your
+                transactions safe.
+            </p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">✨</div>
+            <h3>Personalized Experience</h3>
+            <p>
+                Tailored recommendations and offers based on your preferences
+                and shopping history.
+            </p>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,81 @@
+﻿@page
+@model OrderTrackerModel
+@{
+    ViewData["Title"] = "Order Tracker";
+}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #0b1c2d, #111827);
+        font-family: 'Segoe UI', sans-serif;
+        color: #fff;
+    }
+
+    .tracker-container {
+        max-width: 700px;
+        margin: 60px auto;
+        background: rgba(255,255,255,0.08);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .step {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        opacity: 0.4;
+    }
+
+        .step.active {
+            opacity: 1;
+        }
+
+    .circle {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background: #9ca3af;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        font-weight: bold;
+    }
+
+    .step.active .circle {
+        background: #22c55e;
+    }
+</style>
+
+<div class="tracker-container">
+    <h1>📦 Order Tracker</h1>
+
+    <p><strong>Order ID:</strong> @Model.Order.Id</p>
+    <p><strong>Status:</strong> @Model.Order.Status</p>
+
+    <div class="step @(Model.Order.Status == "Created" || Model.Order.Status == "Processing" || Model.Order.Status == "Shipped" || Model.Order.Status == "Delivered" ? "active" : "")">
+        <div class="circle">1</div>
+        <span>Order Created</span>
+    </div>
+
+    <div class="step @(Model.Order.Status == "Processing" || Model.Order.Status == "Shipped" || Model.Order.Status == "Delivered" ? "active" : "")">
+        <div class="circle">2</div>
+        <span>Processing</span>
+    </div>
+
+    <div class="step @(Model.Order.Status == "Shipped" || Model.Order.Status == "Delivered" ? "active" : "")">
+        <div class="circle">3</div>
+        <span>Shipped</span>
+    </div>
+
+    <div class="step @(Model.Order.Status == "Delivered" ? "active" : "")">
+        <div class="circle">4</div>
+        <span>Delivered</span>
+    </div>
+</div>

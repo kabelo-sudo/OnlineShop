@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace OnlineShop.Pages
 {
-    public class PrivacyModel : PageModel
+    public class ServicesModel : PageModel
     {
-        private readonly ILogger<PrivacyModel> _logger;
+        private readonly ILogger<ServicesModel> _logger;
 
-        public PrivacyModel(ILogger<PrivacyModel> logger)
+        public ServicesModel(ILogger<ServicesModel> logger)
         {
             _logger = logger;
         }
